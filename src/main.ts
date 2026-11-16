@@ -13,6 +13,10 @@ async function bootstrap() {
 
   app.useGlobalPipes(new ValidationPipe({ //captura os erros definidos no create-product
     errorHttpStatusCode: 422,
+    transform: true, // transforma o valor recebido em um objeto do tipo definido no DTO (todo numero recebido como string é transformado em number)
+    transformOptions: { // transforma o valor recebido em um objeto do tipo definido no DTO (todo numero passado por query chega como string e é transformado em number)
+        enableImplicitConversion: true
+    }
   }))
 
   // 400 - Bad request -> não entendi o que foi enviado

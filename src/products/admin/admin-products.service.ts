@@ -1,12 +1,12 @@
 import { Injectable } from '@nestjs/common';
 import { CreateProductDto } from './dto/create-product.dto.js';
 import { UpdateProductDto } from './dto/update-product.dto.js';
-import { PrismaService } from '../prisma/prisma.service.js';
-import { ProductSlugAlreadyExistsError } from './error.js';
-import { NotFoundError } from '../common/errors.js';
+import { PrismaService } from '../../prisma/prisma.service.js';
+import { ProductSlugAlreadyExistsError } from '../error.js';
+import { NotFoundError } from '../../common/errors.js';
 
 @Injectable()
-export class ProductsService {
+export class AdminProductsService {
 
     constructor(private prismaService: PrismaService) { }
 

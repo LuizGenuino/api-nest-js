@@ -1,9 +1,13 @@
 ###
-GET http://localhost:3000/products
+GET http://localhost:3000/admin/products
+
+
+###
+GET http://localhost:3000/products?page=1
 
 ###
 # @name CreateProduct
-POST http://localhost:3000/products
+POST http://localhost:3000/admin/products
 Content-Type: application/json
 
 {
@@ -13,10 +17,16 @@ Content-Type: application/json
 @productId = {{CreateProduct.response.body.id}}
 
 ###
-GET http://localhost:3000/products/cmwjpki4p00006wcsj0762o34
+GET http://localhost:3000/admin/products/cmwjpki4p00006wcsj0762o34
 
 ###
-PATCH  http://localhost:3000/products/cmwjpnivj0=
+GET http://localhost:3000/admin/products/cmwjpki4p00006wcsj0762o34
+
+###
+GET http://localhost:3000/products/product-1
+
+###
+PATCH  http://localhost:3000/admin/products/cmwjpnivj0=
 Content-Type: application/json
 
 {
@@ -25,4 +35,4 @@ Content-Type: application/json
 
 
 ###
-DELETE  http://localhost:3000/products/cmwjovdbd0000wwcsal6u81s0
+DELETE  http://localhost:3000/admin/products/cmwjovdbd0000wwcsal6u81s0
