@@ -43,8 +43,22 @@ export class ProductsService {
     }
 
     async update(id: string, updateProductDto: UpdateProductDto) {
+        console.log(id)
+        console.log(updateProductDto)
 
-        this.findOne(id)
+        let product = await this.prismaService.product.findFirst({
+            where: {
+                slug: updateProductDto.slug
+            }
+        });
+
+        console.log(product)
+
+        if (product && product.id !== id) {
+            throw new ProductSlugAlreadyExistsError(updateProductDto.slug || '')
+        }
+
+        product = product && product.id === id ? product : await this.findOne(id) // se o produto nao existir ou o id for diferente do passado faço a verificação se ele existe
 
         return this.prismaService.product.update({
             where: {

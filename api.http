@@ -13,17 +13,16 @@ Content-Type: application/json
 @productId = {{CreateProduct.response.body.id}}
 
 ###
-GET http://localhost:3000/products/1
+GET http://localhost:3000/products/cmwjpki4p00006wcsj0762o34
 
 ###
-PATCH  http://localhost:3000/products/cmwjovdbj0001wwcsrd93zq3x
+PATCH  http://localhost:3000/products/cmwjpnivj0=
 Content-Type: application/json
+
 {
-    "name": "Product 2",
-    "slug": "product-2",
-    "description": "Description for product 2",
-    "price": 20
-  }
+    "slug": "product-555"
+}
+
 
 ###
 DELETE  http://localhost:3000/products/cmwjovdbd0000wwcsal6u81s0
