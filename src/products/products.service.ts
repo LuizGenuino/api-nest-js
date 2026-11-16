@@ -3,13 +3,14 @@ import { CreateProductDto } from './dto/create-product.dto.js';
 import { UpdateProductDto } from './dto/update-product.dto.js';
 import { PrismaService } from '../prisma/prisma.service.js';
 import { ProductSlugAlreadyExistsError } from './error.js';
+import { NotFoundError } from '../common/errors.js';
 
 @Injectable()
 export class ProductsService {
 
     constructor(private prismaService: PrismaService) { }
 
-    async create(createProductDto: CreateProductDto) {
+    async create(createProductDto: CreateProductDto) { // quano eu preciso manipular o resultado da requisição dentro do proprio metodo eu preciso do async e await
         const product = await this.prismaService.product.findFirst({
             where: {
                 slug: createProductDto.slug
@@ -23,19 +24,28 @@ export class ProductsService {
         });
     }
 
-    findAll() {
+    findAll() { // não precisa de async e await pois eu nao preciso esperar o resultado da requisição para manipular dentro do metodo
         return this.prismaService.product.findMany();
     }
 
-    findOne(id: string) {
-        return this.prismaService.product.findFirst({
+    async findOne(id: string) {
+        const product = await this.prismaService.product.findFirst({
             where: {
                 id: id
             }
         });
+
+        if (!product) {
+            throw new NotFoundError('Product', id)
+        }
+
+        return product
     }
 
-    update(id: string, updateProductDto: UpdateProductDto) {
+    async update(id: string, updateProductDto: UpdateProductDto) {
+
+        this.findOne(id)
+
         return this.prismaService.product.update({
             where: {
                 id: id
@@ -44,7 +54,9 @@ export class ProductsService {
         });
     }
 
-    remove(id: string) {
+    async remove(id: string) {
+        await this.findOne(id)
+
         return this.prismaService.product.delete({
             where: {
                 id: id

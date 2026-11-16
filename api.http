@@ -16,12 +16,14 @@ Content-Type: application/json
 GET http://localhost:3000/products/1
 
 ###
-PATCH  http://localhost:3000/products/cmwjo5o5i0000ascs5v6zv3rx
+PATCH  http://localhost:3000/products/cmwjovdbj0001wwcsrd93zq3x
 Content-Type: application/json
-
 {
- "name": 2222
-}
+    "name": "Product 2",
+    "slug": "product-2",
+    "description": "Description for product 2",
+    "price": 20
+  }
 
 ###
-DELETE  http://localhost:3000/products/cmwgtdozo0000c8cs448u6eud
+DELETE  http://localhost:3000/products/cmwjovdbd0000wwcsal6u81s0
