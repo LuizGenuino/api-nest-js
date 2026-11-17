@@ -4,14 +4,16 @@ POST http://localhost:3000/auth/login
 Content-Type: application/json
 
 {
- "email": "admin@user.com",
+ "email": "customer@user.com",
  "password": "password"
 }
 
+###
+@jwt = {{jwt_login.response.body.access_token}}
 
 ###
 GET http://localhost:3000/admin/products
-
+Authorization: Bearer {{jwt}}
 
 ####
 GET http://localhost:3000/products?page=1

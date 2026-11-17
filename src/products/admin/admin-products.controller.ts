@@ -1,8 +1,14 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, HttpCode } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, HttpCode, UseGuards } from '@nestjs/common';
 import { AdminProductsService } from './admin-products.service.js';
 import { CreateProductDto } from './dto/create-product.dto.js';
 import { UpdateProductDto } from './dto/update-product.dto.js';
+import { AuthGuard } from '../../auth/auth.guard.js';
+import { UserRole } from '../../auth/roles/roles.js';
+import { Roles } from '../../auth/roles/roles.decorator.js';
+import { RolesGuard } from '../../auth/roles/roles.guard.js';
 
+@Roles([UserRole.Admin])
+@UseGuards(AuthGuard, RolesGuard)
 @Controller('admin/products')
 export class AdminProductsController {
   constructor(private readonly productsService: AdminProductsService) {}

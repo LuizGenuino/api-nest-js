@@ -43,16 +43,12 @@ export class AdminProductsService {
     }
 
     async update(id: string, updateProductDto: UpdateProductDto) {
-        console.log(id)
-        console.log(updateProductDto)
 
         let product = await this.prismaService.product.findFirst({
             where: {
                 slug: updateProductDto.slug
             }
         });
-
-        console.log(product)
 
         if (product && product.id !== id) {
             throw new ProductSlugAlreadyExistsError(updateProductDto.slug || '')
