@@ -1,3 +1,6 @@
+ Curso Seguido: [Full Cycle - Nest.js: Desenvolvendo APIs escaláveis](https://www.youtube.com/live/ITc0oDwY3CA?si=qOFDmdTwHSrWwJG2)
+
+
 <p align="center">
   <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
 </p>
