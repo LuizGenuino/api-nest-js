@@ -8,6 +8,7 @@ import { InvalidCredentialsErrorFilter } from './auth/filters/invalid-credential
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, {
     instrument: ObserveInstrument,
+    cors: true
   });
 
   app.useGlobalFilters(new ProductSlugAlreadyExistsErrorFilter(), new NotFoundErrorFilter, new InvalidCredentialsErrorFilter); //tratamento de erros centralizados (puxa todos os erros para ele)
